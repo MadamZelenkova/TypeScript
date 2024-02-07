@@ -12,17 +12,12 @@ export default class Cart {
   }
 
   calculateSum(): number {
-    let amount: number = 0;
-    const items = this.items;
-    items.forEach((item) => {
-      amount += item.price;
-    });
-    return amount;
+    return this.items.reduce((total, item) => total + item.price, 0);
   }
 
   calcSumWithBonus(discount: number): number {
     const sum: number = this.calculateSum();
-    return sum - sum * discount / 100;
+    return sum - (sum * discount) / 100;
   }
 
   removeItem(id: number): void {
